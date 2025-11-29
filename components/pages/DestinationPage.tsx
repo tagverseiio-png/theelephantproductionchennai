@@ -49,24 +49,11 @@ export const DestinationPage = ({ setPage }: DestinationPageProps) => {
       .catch(error => console.error('DestinationPage: Error fetching:', error));
   }, []);
 
-  const badge = content?.hero?.badge || 'World Ready';
-  const title = content?.hero?.title || 'Beyond Boundaries';
-  const mediaUrl = content?.hero?.mediaUrl || ASSETS.destination;
-  const sectionTitle = content?.sectionTitle || 'Common Destinations';
-  const places = content?.places?.length ? content.places : [
-    { id: 1, name: 'Udaipur' },
-    { id: 2, name: 'Jaipur' },
-    { id: 3, name: 'Goa' },
-    { id: 4, name: 'Mahabalipuram' },
-    { id: 5, name: 'Kerala' },
-    { id: 6, name: 'Bali' },
-    { id: 7, name: 'Thailand' },
-    { id: 8, name: 'Dubai' },
-    { id: 9, name: 'Singapore' },
-    { id: 10, name: 'Italy' },
-    { id: 11, name: 'France' },
-    { id: 12, name: 'Turkey' }
-  ];
+  const badge = content?.hero?.badge;
+  const title = content?.hero?.title;
+  const mediaUrl = content?.hero?.mediaUrl;
+  const sectionTitle = content?.sectionTitle;
+  const places = content?.places || [];
 
   // Normalize the media URL to use correct backend domain
   const imageUrl = normalizeMediaUrl(mediaUrl);
@@ -83,30 +70,38 @@ export const DestinationPage = ({ setPage }: DestinationPageProps) => {
           />
         )}
         <div className="relative z-20 text-center text-white max-w-5xl px-6">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 border border-white/30 px-4 py-1 rounded-full mb-8 backdrop-blur-md">
-              <Globe size={14} className="text-[#a67b5b]" />
-              <span className="text-[10px] uppercase tracking-widest">{badge}</span>
+          {badge && (
+            <Reveal>
+              <div className="inline-flex items-center gap-2 border border-white/30 px-4 py-1 rounded-full mb-8 backdrop-blur-md">
+                <Globe size={14} className="text-[#a67b5b]" />
+                <span className="text-[10px] uppercase tracking-widest">{badge}</span>
+              </div>
+            </Reveal>
+          )}
+          {title && (
+            <div className="overflow-hidden">
+              <TextReveal className="text-6xl md:text-9xl font-serif mb-6">{title}</TextReveal>
             </div>
-          </Reveal>
-          <div className="overflow-hidden">
-            <TextReveal className="text-6xl md:text-9xl font-serif mb-6">{title}</TextReveal>
-          </div>
+          )}
         </div>
       </div>
 
       <section className="py-32 bg-[#2c2420] text-white">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-serif mb-16 text-[#a67b5b]">{sectionTitle}</h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            {places.map((place, i) => (
-              <Reveal key={place.id} delay={i * 30}>
-                <div className="px-8 py-4 border border-white/10 hover:bg-[#a67b5b] hover:border-[#a67b5b] hover:scale-105 transition-all duration-300 cursor-default uppercase tracking-widest text-xs interactive">
-                  {place.name}
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          {sectionTitle && (
+            <h2 className="text-4xl font-serif mb-16 text-[#a67b5b]">{sectionTitle}</h2>
+          )}
+          {places.length > 0 && (
+            <div className="flex flex-wrap justify-center gap-4">
+              {places.map((place, i) => (
+                <Reveal key={place.id} delay={i * 30}>
+                  <div className="px-8 py-4 border border-white/10 hover:bg-[#a67b5b] hover:border-[#a67b5b] hover:scale-105 transition-all duration-300 cursor-default uppercase tracking-widest text-xs interactive">
+                    {place.name}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

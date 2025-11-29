@@ -41,7 +41,9 @@ export const StoriesPage = () => {
   return (
   <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pt-24">
     <div className="container mx-auto px-6 py-24 text-center">
-       <TextReveal className="text-7xl md:text-9xl font-serif text-[#2c2420] mb-20">{content?.stories?.hero?.title || 'The Journal'}</TextReveal>
+       {content?.stories?.hero?.title && (
+         <TextReveal className="text-7xl md:text-9xl font-serif text-[#2c2420] mb-20">{content.stories.hero.title}</TextReveal>
+       )}
     </div>
 
     {/* Auto-Playing Films Carousel */}

@@ -65,17 +65,25 @@ export const ContactPage = () => {
   <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pt-24 min-h-screen bg-[#2c2420] text-white flex items-center">
      <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
         <div>
-           <TextReveal className="text-6xl md:text-8xl font-serif mb-8">{content?.contact?.hero?.title || "Let's Create Magic."}</TextReveal>
-           <p className="text-[#e8e0d9] font-light text-xl leading-relaxed max-w-md mb-12">{content?.contact?.hero?.description || 'We take on a limited number of weddings each year to ensure we can give our full heart to every couple.'}</p>
+           {content?.contact?.hero?.title && (
+             <TextReveal className="text-6xl md:text-8xl font-serif mb-8">{content.contact.hero.title}</TextReveal>
+           )}
+           {content?.contact?.hero?.description && (
+             <p className="text-[#e8e0d9] font-light text-xl leading-relaxed max-w-md mb-12">{content.contact.hero.description}</p>
+           )}
            <div className="space-y-8 border-l border-white/10 pl-8">
-              <div className="group interactive cursor-pointer">
-                  <p className="text-[10px] uppercase tracking-widest opacity-50 mb-1">Call Us</p>
-                  <p className="text-2xl font-serif group-hover:text-[#a67b5b] transition-colors duration-200">{content?.contact?.details?.phone || '+91 98765 43210'}</p>
-              </div>
-              <div className="group interactive cursor-pointer">
-                  <p className="text-[10px] uppercase tracking-widest opacity-50 mb-1">Email Us</p>
-                  <p className="text-2xl font-serif group-hover:text-[#a67b5b] transition-colors duration-200">{content?.contact?.details?.email || 'hello@elephantproductions.in'}</p>
-              </div>
+              {content?.contact?.details?.phone && (
+                <div className="group interactive cursor-pointer">
+                    <p className="text-[10px] uppercase tracking-widest opacity-50 mb-1">Call Us</p>
+                    <p className="text-2xl font-serif group-hover:text-[#a67b5b] transition-colors duration-200">{content.contact.details.phone}</p>
+                </div>
+              )}
+              {content?.contact?.details?.email && (
+                <div className="group interactive cursor-pointer">
+                    <p className="text-[10px] uppercase tracking-widest opacity-50 mb-1">Email Us</p>
+                    <p className="text-2xl font-serif group-hover:text-[#a67b5b] transition-colors duration-200">{content.contact.details.email}</p>
+                </div>
+              )}
            </div>
         </div>
         <div className="bg-white/5 p-12 backdrop-blur-sm border border-white/10">

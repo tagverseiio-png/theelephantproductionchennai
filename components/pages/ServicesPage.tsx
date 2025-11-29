@@ -13,8 +13,12 @@ export const ServicesPage = () => {
   <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pt-24">
     <div className="bg-[#2c2420] py-32 text-center text-white">
        <div className="container mx-auto px-6">
-          <TextReveal className="text-6xl md:text-8xl font-serif mb-6">{content?.services?.hero?.title || 'Our Services'}</TextReveal>
-          <p className="text-[#a67b5b] tracking-[0.2em] uppercase text-xs">{content?.services?.hero?.subtitle || 'Curated Experiences for the Modern Couple'}</p>
+          {content?.services?.hero?.title && (
+            <TextReveal className="text-6xl md:text-8xl font-serif mb-6">{content.services.hero.title}</TextReveal>
+          )}
+          {content?.services?.hero?.subtitle && (
+            <p className="text-[#a67b5b] tracking-[0.2em] uppercase text-xs">{content.services.hero.subtitle}</p>
+          )}
        </div>
     </div>
 
